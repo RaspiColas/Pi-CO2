@@ -31,11 +31,17 @@ SCL -> GPIO 5 (SCL)
 from os import system, path
 from time import strftime
 import lcd_display_lib
-import send_sms_lib
 import co2_lib
 import ConfigParser
 
-debug = True
+try:
+	import send_sms_lib
+	has_sms = True
+except:
+	has_sms = False
+
+
+debug = False
 
 PATH_PREFIX = path.dirname(path.abspath(__file__)) + '/'
 LOG_FILENAME = PATH_PREFIX + "log_co2.log"
@@ -126,7 +132,7 @@ def co2():
 	if not val:
 		return False
 
-	if int(val) > param["co2max"]:
+	if has_sms and (int(val) > param["co2max"]):
 		no_err = send_sms_lib.send_text_sms("Alerte C02 = %s PPM" % (val))
 
 	copy_co2_val()
