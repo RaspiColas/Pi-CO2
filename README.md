@@ -27,3 +27,19 @@ In /var/www/html:
 The script has to be put in a crontab for being activated regularly (eg, every 1 hour) to monitor the data.
 
 Source: https://monitorserviceatelierueda.blogspot.com/2018/11/how-to-measure-room-co2-concentration.html
+
+Wiring:
+
+CO2 Sensor:
+
+Vin -> GPIO 4 (5V)
+GND -> GPIO 6 (GND)
+Tx -> GPIO 10 (RXD)
+Rx -> GPIO 8 (TXD)
+
+LCD Screen:
+
+GND -> GPIO 9 (GND)
+VCC -> GPIO 2 (5V)
+SDA -> GPIO 3 (SDA)
+SCL -> GPIO 5 (SCL)
